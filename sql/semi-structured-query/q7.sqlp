@@ -1,0 +1,12 @@
+USE geo;
+
+SELECT c.`-car_code` AS country_code,
+       c.name AS country_name,
+       ARRAY_AGG({"sea": s.name}) AS seas
+FROM geo.world w, w.mondial.sea s
+LET sea_countries = fn:tokenize(s.`-country`, " ")
+FOR cc IN sea_countries
+JOIN c IN w.mondial.country ON c.`-car_code` = cc
+GROUP BY c.`-car_code`, c.name
+HAVING COUNT(*) >= 2
+ORDER BY ARRAY_LENGTH(seas) DESC;

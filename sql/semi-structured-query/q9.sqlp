@@ -1,0 +1,29 @@
+USE geo;
+
+WITH MountainPairs AS (
+  SELECT c1.name AS country1, c2.name AS country2
+  FROM geo.world w, w.mondial.mountain m
+  LET mc = fn:tokenize(m.`-country`, " ")
+  FOR cc1 IN mc
+  FOR cc2 IN mc
+  JOIN c1 IN w.mondial.country ON c1.`-car_code` = cc1
+  JOIN c2 IN w.mondial.country ON c2.`-car_code` = cc2
+  WHERE cc1 < cc2
+  GROUP BY c1.name, c2.name
+),
+
+SeaPairs AS (
+  SELECT c1.name AS country1, c2.name AS country2
+  FROM geo.world w, w.mondial.sea s
+  LET sc = fn:tokenize(s.`-country`, " ")
+  FOR cc1 IN sc
+  FOR cc2 IN sc
+  JOIN c1 IN w.mondial.country ON c1.`-car_code` = cc1
+  JOIN c2 IN w.mondial.country ON c2.`-car_code` = cc2
+  WHERE cc1 < cc2
+  GROUP BY c1.name, c2.name
+)
+
+SELECT mp.country1 AS first_country, mp.country2 AS second_country
+FROM MountainPairs mp
+JOIN SeaPairs sp ON mp.country1 = sp.country1 AND mp.country2 = sp.country2;

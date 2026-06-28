@@ -1,0 +1,11 @@
+USE geo;
+
+SELECT c.`-car_code` AS country_code,
+       c.name AS country_name,
+       ARRAY_AGG({"mountain": m.name, "height": float(m.height)}) AS mountains
+FROM geo.world w, w.mondial.mountain m
+LET country_codes = fn:tokenize(m.`-country`, " ")
+FOR cc IN country_codes
+JOIN c IN w.mondial.country ON c.`-car_code` = cc
+GROUP BY c.`-car_code`, c.name
+ORDER BY ARRAY_LENGTH(mountains) DESC;

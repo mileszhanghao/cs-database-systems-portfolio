@@ -1,0 +1,11 @@
+USE geo;
+
+SELECT m.name AS mountain,
+       float(m.height) AS height,
+       cc AS country_code,
+       c.name AS country_name
+FROM geo.world w, w.mondial.mountain m
+LET country_codes = fn:tokenize(m.`-country`, " ")
+FOR cc IN country_codes
+JOIN c IN w.mondial.country ON c.`-car_code` = cc
+ORDER BY height DESC;

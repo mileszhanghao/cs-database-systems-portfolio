@@ -1,0 +1,14 @@
+USE geo;
+
+SELECT c.`-car_code` AS country_code,
+       c.name AS country_name,
+       int(c.`-area`) AS area
+FROM geo.world w, w.mondial.country c
+WHERE c.`-car_code` NOT IN (
+  SELECT DISTINCT cc
+  FROM geo.world w, w.mondial.sea s
+  LET sea_countries = fn:tokenize(s.`-country`, " ")
+  FOR cc IN sea_countries
+  SELECT cc
+)
+ORDER BY area DESC;

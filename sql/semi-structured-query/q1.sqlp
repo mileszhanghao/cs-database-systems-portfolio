@@ -1,0 +1,10 @@
+USE geo;
+
+SELECT c.name AS city
+FROM geo.world w, w.mondial.country y,
+     CASE WHEN y.city IS MISSING THEN []
+          WHEN is_array(y.city) THEN y.city
+          ELSE [y.city]
+     END c
+WHERE y.name = "Peru"
+ORDER BY c.name;

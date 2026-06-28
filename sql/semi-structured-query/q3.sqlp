@@ -1,0 +1,11 @@
+USE geo;
+
+SELECT r.#text AS religion,
+       COUNT(*) AS num_countries
+FROM geo.world w, w.mondial.country c,
+     CASE WHEN c.religions IS MISSING THEN []
+          WHEN is_array(c.religions) THEN c.religions
+          ELSE [c.religions]
+     END r
+GROUP BY r.#text
+ORDER BY num_countries DESC;
