@@ -1,14 +1,23 @@
-# Vaccine Scheduler
+# Healthcare Appointment Scheduling Backend
 
-A Java command-line scheduling system for vaccine appointments backed by a relational database.
+A Java command-line scheduling backend for appointment booking, provider availability, vaccine inventory, and account authentication, backed by a relational database.
 
-## What It Does
+## Product Capabilities
 
 - Creates and authenticates patient and caregiver accounts.
 - Stores password salts and hashes instead of plaintext passwords.
-- Lets caregivers upload availability and add vaccine doses.
-- Lets patients search availability, reserve appointments, cancel appointments, and view scheduled appointments.
-- Uses SQL constraints to model unique availability and reservation records.
+- Lets caregivers publish availability and manage vaccine doses.
+- Lets patients search open slots, reserve appointments, cancel appointments, and view scheduled bookings.
+- Uses SQL constraints to protect unique availability and reservation records.
+- Reads database configuration from environment variables so credentials are not committed.
+
+## Engineering Focus
+
+- Java service logic for a stateful booking workflow.
+- JDBC prepared statements for database access.
+- Relational schema design for users, inventory, availability, and reservations.
+- Authentication flow with salted password hashing.
+- Transaction-oriented command-line application behavior.
 
 ## Project Structure
 
@@ -38,5 +47,4 @@ No credentials are committed to this repository.
 
 ## Portfolio Context
 
-This project demonstrates relational schema design, JDBC programming, prepared statements, basic authentication flows, and transaction-oriented application logic. Course instructions, tests, and grading artifacts are excluded.
-
+This project demonstrates backend application logic, relational modeling, secure credential handling, and SQL-backed workflow design. Private evaluation artifacts are excluded.

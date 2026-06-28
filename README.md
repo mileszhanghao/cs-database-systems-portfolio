@@ -1,45 +1,33 @@
-# CS Database Systems Portfolio
+# Database Systems and Backend Portfolio
 
-Selected database systems work from University of Washington CS coursework, cleaned for portfolio review.
+Backend and database engineering work organized as product-style systems: a healthcare appointment scheduler, relational query sets, schema design exercises, and semi-structured data querying.
 
-This repository focuses on practical SQL, relational design, semi-structured querying, and a Java/JDBC scheduling application. Course prompts, grading artifacts, hidden tests, and instructor materials are intentionally omitted.
+## Product Framing
+
+This repository demonstrates how I model business workflows as database-backed applications: define entities and constraints, write safe SQL, connect application code through JDBC, and keep credentials out of source control.
 
 ## Projects
 
-### Vaccine Scheduler
+| Project | Product-style focus | Stack |
+| --- | --- | --- |
+| [Healthcare appointment scheduler](vaccine-scheduler/) | Account creation, authentication, provider availability, inventory, booking, cancellation | Java, JDBC, SQL Server |
+| [Relational query practice](sql/relational-query-practice/) | Analytics queries over normalized relational data | SQL, joins, aggregation |
+| [Schema design](sql/schema-design/) | Entity modeling, constraints, dependency reasoning | SQL, relational design |
+| [Semi-structured query](sql/semi-structured-query/) | Querying nested data and document-like records | SQL-style query language |
 
-`vaccine-scheduler/` contains a Java command-line application backed by Microsoft SQL Server.
+## Engineering Highlights
 
-Highlights:
+- Designed relational tables for patients, caregivers, vaccines, availability, and reservations.
+- Implemented Java/JDBC data access using prepared statements.
+- Used salted password hashing rather than plaintext credential storage.
+- Modeled appointment workflows with search, reservation, cancellation, availability upload, and dose management.
+- Loaded database credentials from environment variables.
+- Organized SQL work around filtering, joins, grouping, aggregation, constraints, and schema reasoning.
 
-- Relational schema for patients, caregivers, vaccines, availabilities, and reservations.
-- Java/JDBC data access with prepared statements.
-- Password hashing and salting for patient and caregiver login.
-- Appointment search, reservation, cancellation, availability upload, and dose management flows.
-- Database credentials loaded from environment variables rather than source code.
+## Target Roles Signaled
 
-### SQL Query Practice
+Backend engineer, data engineer, database developer, analytics engineer, and software-oriented data analyst.
 
-`sql/relational-query-practice/` contains selected SQL queries and schema setup files covering filtering, joins, aggregation, grouping, and relational query composition.
+## Publication Boundary
 
-### Schema Design
-
-`sql/schema-design/` contains SQL work focused on schema reasoning, constraints, and functional-dependency-style analysis.
-
-### Semi-Structured Query
-
-`sql/semi-structured-query/` contains SQL++ style queries over semi-structured data.
-
-## Tech Stack
-
-- SQL
-- Microsoft SQL Server
-- Java
-- JDBC
-- Relational schema design
-- Semi-structured query languages
-
-## Notes on Source
-
-The vaccine scheduler public copy preserves the third-party scaffold license included with the original project. The visible repository contains completed source code and portfolio notes only; it does not include assignment prompts, autograder tests, feedback, or grade information.
-
+The public repo keeps completed source code and portfolio-safe notes. Private evaluation artifacts and credentials are excluded.
