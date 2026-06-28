@@ -180,6 +180,25 @@ public class Scheduler {
         return true;
     }
 
+    private static boolean usernameExistsPatient(String username) {
+        ConnectionManager cm = new ConnectionManager();
+        Connection con = cm.createConnection();
+
+        String selectUsername = "SELECT * FROM Patients WHERE Username = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(selectUsername);
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.isBeforeFirst();
+        } catch (SQLException e) {
+            System.out.println("Error occurred when checking username");
+            e.printStackTrace();
+        } finally {
+            cm.closeConnection();
+        }
+        return true;
+    }
+
     private static void loginPatient(String[] tokens) {
         if (currentCaregiver != null || currentPatient != null) {
             System.out.println("User already logged in, try again");
